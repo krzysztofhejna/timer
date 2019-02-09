@@ -43,7 +43,7 @@ class Stopwatch extends React.Component{
   }
 
   calculate() {
-    let currentTimes = Object.assign({}, this.state.times);
+    const currentTimes = Object.assign({}, this.state.times);
 
     currentTimes.miliseconds = currentTimes.miliseconds + 1;
     if (currentTimes.miliseconds >= 100) {
@@ -67,7 +67,7 @@ class Stopwatch extends React.Component{
   stop() {
     this.state.running = false;
     clearInterval(this.watch);
-    let newResult = {
+    const newResult = {
       time: this.format(),
       id: Date.now(),
     };
@@ -80,14 +80,6 @@ class Stopwatch extends React.Component{
     this.setState({
       results: [],
     });
-  }
-
-  pad0(value) {
-    let result = value.toString();
-    if (result.length < 2) {
-        result = '0' + result;
-    }
-    return result;
   }
 
   render () {
@@ -118,6 +110,14 @@ class Results extends React.Component {
           </ul>
       );
   }
+}
+
+pad0(value) {
+  let result = value.toString();
+  if (result.length < 2) {
+      result = '0' + result;
+  }
+  return result;
 }
 
 ReactDOM.render(<Stopwatch/>, document.getElementById('app'));
